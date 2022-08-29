@@ -151,7 +151,7 @@ def main():
     on  DMT_REPLENISHMENT_IDENTIFICATION_NUM = identification_num
     ) as DMT_REPLENISHMENT_OUTPUT
     ON DMT_REPLENISHMENT_OUTPUT. DMT_REPLENISHMENT_IDENTIFICATION_NUM   =AXIS_CDM_RESULT.log_id
-    FULL outer join
+    LEFT outer join
     (
      select transaction_id as AXIS_BANK_MIS_TRANSACTION_ID,sum(transaction_amount) as AXIS_BANK_MIS_AMOUNT,transaction_date as AXIS_BANK_MIS_TRANSACTION_DATE,cdm_card_num as AXIS_BANK_MIS_CARD_NUM from (
                     select row_number() over ( PARTITION BY a.cdm_card_num,
